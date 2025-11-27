@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>登入</title>
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#3b82f6; --danger:#ef4444; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto; background:linear-gradient(135deg,#0f172a,#111827); color:var(--text); display:grid; place-items:center; min-height:100vh; }
+    .card { width:100%; max-width:380px; background:var(--card); border:1px solid #1f2937; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.35); padding:24px; }
+    h1 { font-size:1.25rem; margin:0 0 16px; }
+    .field { margin-bottom:12px; }
+    label { display:block; font-size:.875rem; color:var(--muted); margin-bottom:6px; }
+    input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #334155; background:#0b1220; color:var(--text); outline:none; }
+    input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(59,130,246,.25); }
+    .actions { display:flex; gap:8px; align-items:center; margin-top:12px; }
+    button { flex:1; padding:10px 14px; border:none; border-radius:8px; background:var(--accent); color:white; font-weight:600; cursor:pointer; }
+    button:disabled { opacity:.7; cursor:not-allowed; }
+    .helper { text-align:center; font-size:.875rem; color:var(--muted); margin-top:10px; }
+    .error { margin-top:10px; color:var(--danger); font-size:.9rem; display:none; }
+  </style>
+</head>
+<body>
+  <form class="card" id="loginForm" novalidate>
+    <h1>登入</h1>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required />
+    </div>
+    <div class="field">
+      <label for="password">密碼</label>
+      <input id="password" name="password" type="password" minlength="6" placeholder="••••••••" required />
+    </div>
+    <div class="actions">
+      <button type="submit">登入</button>
+    </div>
+    <div class="error" id="error"></div>
+    <div class="helper">還沒有帳號？#註冊</a></div>
+  </form>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('error');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      errorBox.style.display = 'none';
+      if (!form.checkValidity()) {
+        errorBox.textContent = '請確認 email 與密碼（至少 6 字）';
+        errorBox.style.display = 'block';
+        return;
+      }
+      // TODO: 在這裡接你的 API 或第三方身份驗證
+      alert('這是示範：目前尚未串接真正的登入驗證。');
+    });
+  </script>
+</body>
+</html>
